@@ -19,8 +19,7 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint",
-        "prettier"
+        "@typescript-eslint"
     ],
     "rules": {
       "react/jsx-uses-react": "off",
