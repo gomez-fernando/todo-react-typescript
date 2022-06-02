@@ -7,7 +7,7 @@ export type TodoContextInterface = {
   createTodoValue: string;
   setTodoValue: React.Dispatch<React.SetStateAction<string>>;
   addTodo: () => void;
-  completedTodods: number;
+  completedTodos: number;
   totalTodos: number;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
@@ -40,6 +40,65 @@ function TodoProvider(props: TodoProviderProps){
 
   const toogleFilterComplete = () => {
     setFilterComplete(!filterComplete);
+  }
+
+  const filter = () =>{
+    if(filterComplete){
+      const todosFilter = todos.filter((todo) => todo.completed === false);
+      return todosFilter.filter((todo) => 
+        todo.text.toLocaleLowerCase().includes(searchValue.toLowerCase())
+      );
+    }else{
+      return todos.filter((todo) => 
+        todo.text.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+  }
+
+  const todosFiltered = filter();
+
+  const completeTodos = (text: string) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    const toogleComplete = !newTodos[todoIndex].completed;
+    newTodos[todoIndex] = {
+      ...todos[todoIndex],
+      completed: toogleComplete
+    };
+    saveTodos(newTodos);
+  }
+
+  const [openModal, setOpenModal] = useState(false);
+  const [todoForDelete, setTodoForDelete] = useState('');
+
+  const deleteTodos = () => {
+    const todoIndex = todos.findIndex((todo) => todo.text === todoForDelete);
+    if(todoIndex < 0) return;
+
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    saveTodos(newTodos);
+
+    setOpenModal(false);
+  }
+
+  const addTodo = () => {
+    if(createTodoValue.length <= 0){
+      return;
+    }
+    const newTodos = [...todos];
+    const newTodo: Todo = {
+      text: createTodoValue,
+      completed: false
+    };
+    newTodos.push(newTodo);
+
+    saveTodos(newTodos);
+  }
+
+  const verificationDelete = (text: string) => {
+    setOpenModal(true);
+    setTodoForDelete(text);
   }
 
   const context: TodoContextInterface = {
