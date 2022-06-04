@@ -94,6 +94,7 @@ function TodoProvider(props: TodoProviderProps){
     newTodos.push(newTodo);
 
     saveTodos(newTodos);
+    setTodoValue('');
   }
 
   const verificationDelete = (text: string) => {
