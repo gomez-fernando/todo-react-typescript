@@ -9,7 +9,7 @@ type ModalProps = {
 
 function Modal({children}: ModalProps){
 
-  const modalRoot = document.querySelector('#modal') as HTMLElement;
+  const modalRoot = document.getElementById('modal') as HTMLElement;
 
   return ReactDOM.createPortal(
     <div className="modal">
@@ -20,4 +20,4 @@ function Modal({children}: ModalProps){
   );
 }
 
-export { Modal };
+export default Modal ;

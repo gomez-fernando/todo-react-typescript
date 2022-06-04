@@ -6,7 +6,7 @@ import { TodoList } from "../components/TodoList"
 import { CreateTodoButton } from '../components/CreateTodoButton';
 import { TodoCounter } from '../components/TodoCounter';
 import { TodoSearch } from '../components/TodoSearch';
-import { Modal } from '../components/Modal';
+import  Modal  from '../components/Modal';
 import { useTodoContext } from '../hooks/useTodoContext';
 
 function AppUI(){

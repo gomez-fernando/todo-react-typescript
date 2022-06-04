@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 import { useTodoContext } from "../hooks/useTodoContext";
 
-// import taskImage from '../static/notebook.svg';
 import view from '../static/view.png';
 import hidden from '../static/hidden.png';
 
@@ -15,9 +14,6 @@ function TodoSearch(){
     
   }
 
-  // let icon: string;
-
-  // (filterComplete) ? icon = 'view.png' : icon = 'hidden.png';
 
   return (
     <div className="todo-search">
@@ -31,7 +27,7 @@ function TodoSearch(){
         onClick={toogleFilterComplete}
         className="button-search"
       >
-        <img src={filterComplete ? view : hidden} alt="view or hidden icon" />
+        <img src={filterComplete ? hidden : view} alt="view or hidden icon" />
       </button>
     </div>
   )
