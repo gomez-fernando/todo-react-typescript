@@ -11,8 +11,22 @@ function TodoItem({item, onComplete, onDelete} : TodoItemProps){
   const {verificationDelete} = useTodoContext();
 
   return (
-    <li>
-      className={item.completed ? 'completed' : ''}
+    <li className={item.completed ? 'completed' : ''}>
+      <button 
+        onClick={() => onComplete(item.text)} 
+        className={`checkbox`}
+      >
+        {item.completed ? '✔' : ''}
+      </button>
+
+      <p>{item.text}</p>
+
+      <button 
+        onClick={() => verificationDelete(item.text)} 
+        className="delete"
+      >
+        X
+      </button>
     </li>
   )
 }
